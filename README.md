@@ -6,6 +6,7 @@
     - index.js 配置的入口
   - controler 功能实现
   - data  存放json文件，用于测试或者数据响应
+  - middlewares  自定义中间件
   - model 存放mongoose的model
   - node_modules 项目依赖库
   - routers 路由
@@ -18,6 +19,7 @@
   - views
     - error.ejs 错误的渲染页面
     - index.ejs 页面模板
+  - .gitignore git提交忽略的文件设置
   - API文档 项目接口文件
   - app.js 项目入口文件
   - package.json 包描述文件

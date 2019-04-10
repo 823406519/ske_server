@@ -1,3 +1,3 @@
 module.exports = async ctx => {
-  ctx.body = ctx.request.body
+  ctx.body = '注销成功'
 }

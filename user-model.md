@@ -63,8 +63,22 @@
 
 16. collect_source(收藏的资源，存储资源id)
 
+# 全球公认头像的使用
+yarn add gravatar
 
-# password 加密
+# password 加密和比对
 yarn add bcrypt
+  - 利用bcrypt生成工具函数encryter
+  - 利用bcrypt进行密码比对
+
+# JWT
+1. 创建自定义的401 Unauthorized 的错误处理
+  - 放在/middlewares/JWTErrorHandler
+1. 生成token
+yarn add jsonwebtoken
 
 
+
+2. token验证
+yarn add koa-passport
+yarn add passport-jwt

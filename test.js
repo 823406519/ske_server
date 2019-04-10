@@ -1,1 +1,5 @@
-console.log('in root');
+if([].length){
+  console.log('hello')
+}else{
+  console.log('test')
+}

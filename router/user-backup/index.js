@@ -8,21 +8,21 @@ const login = require('./login')
 const logout = require('./logout')
 
 /**
- * @route POST /register
+ * @route POST /user/register
  * @description 注册
  * @access 接口是公开的
  */
 router.post('/register', register)
 
 /**
- * @route POST /classification/:name
+ * @route POST /user/classification/:name
  * @description 登陆
  * @access 接口是公开的
  */
 router.post('/login', login)
 
 /**
- * @route GET /logout
+ * @route GET /user/logout
  * @description 注销账户
  * @access 接口是公开的
  */
