@@ -1,3 +1,3 @@
-const emailer = require('./index.js')
+const {sendActiveEmail} = require('./index.js')
 
-emailer.sendEmail('823406519@qq.com', 'http:localhost://3000/7777', '/ejs/htmlTpl.ejs')
+sendActiveEmail('823406519@qq.com', '/hellworld', {id: 555466})

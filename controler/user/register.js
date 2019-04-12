@@ -2,36 +2,62 @@
 const User = require('../../model/user')
 const gravatar = require('gravatar')
 const  {encrypt} = require('../../utils/encrypter')
+const validateRegister =require('../../utils/validator/validateRegister')
+const {sendActiveEmail} = require('../../utils/mailer')
+
 
 module.exports = async ctx => {
+  
+  //判断表单输入是否验证通过
+  const error = validateRegister(ctx.request.body)
+  if(error){
+    ctx.status =400;
+    ctx.body={
+      message: error
+    }
+    return
+  }
+
   const {username, email, password} = ctx.request.body;
   try{
-    const users = await User.find({email});
-    if(users.length){
+    const usersByName = await User.find({username});
+    const usersByEmail = await User.find({email});
+    if(usersByName.length){
+      ctx.status = 400;
+      ctx.body = {
+        message: '用户名已经存在'
+      }
+      return
+    }
+    
+    if(usersByEmail.length){
       ctx.status = 400;
       ctx.body = {
         message: '邮箱已经存在'
       }
-    }else{
-      // mm即如果没有设置头像，显示空头像
-      const avatar = gravatar
-        .url(email, {protocol: 'https',s: '200', r: 'pg', d: 'mm'})
-
-      const newUser = new User({
-        username,
-        email,
-        password: await encrypt(password),
-        avatar,
-      })
-
-      const user = await newUser.save()
-      ctx.status =200
-      ctx.body = {
-        message: '注册成功',
-        user
-      }
+      return
     }
+    
+    // 建立User实例信息，并保存
+    const avatar = gravatar
+      .url(email, {protocol: 'https',s: '200', r: 'pg', d: 'mm'}) // mm如无头像为默认头像
+    const newUser = new User({
+      username,
+      email,
+      password: await encrypt(password),
+      avatar,
+    })
+    const user = await newUser.save() 
+
+    // 发送邮箱激活验证码
+    await sendActiveEmail(user.email, '/email-activation', {_id: user._id})
+
+    ctx.status =200
+    ctx.body = {
+      message: `注册成功,请到邮箱 ${user.email} 进行账户激活`
+    }
+    
   }catch{
-    ctx.throw(500, 'server error', {code: 1})
+    ctx.throw(500)
   }// catch end
 } 

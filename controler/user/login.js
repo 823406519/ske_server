@@ -1,40 +1,56 @@
 const User = require('../../model/user')
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken')
-  const {secretOrPrivateKey} = require('../../config')
-
+const {createToken} = require('../../utils/tokener')
+  
+const validateLogin = require('../../utils/validator/validateLogin')
 module.exports = async ctx => {
+  // 表单验证
+  const error = validateLogin(ctx.request.body);
+  if(error){
+    ctx.status = 401;
+    ctx.body = {
+      message: error
+    }
+    return;
+  }
+  
   const {email, password} = ctx.request.body;
 
-  const users =await User.find({email})
-
   try{
+    const users =await User.find({email})
     if(!users.length){
-      ctx.status = 401;
+      ctx.status = 400;
       ctx.body = {
-        message: '邮箱错误'
+        message: '邮箱不存在'
       }
-      return;
+      return
     }
     
-    // 密码校对是否相等
-    if(await bcrypt.compare(password, users[0].password)){
-      const {id, username, avatar} = users[0];
-      const playload = {id, username, avatar}
-      //生成token
-      const token = jwt.sign(playload, secretOrPrivateKey, {expiresIn: '1h'})
-  
+    if(!await bcrypt.compare(password, users[0].password)){
+      ctx.status = 400;
+      ctx.body ={
+        message: '密码错误'
+      }
+      return
+    }
+
+    if(users[0].status === 0){
+      ctx.status = 400;
       ctx.body = {
-        sussces: true,
-        token: 'Bearer '+token,
-       }
-     }else{
-       ctx.status = 401;
-       ctx.body={
-         message: '密码错误'
-     } // 密码校对 end
-    }  // try end
+        message: '账号尚未激活，请到邮箱进行激活'
+      }
+      return
+    }
+
+    //生成token
+    const token = createToken({_id:users[0]._id});
+
+    ctx.body = {
+      message: '登陆成功',
+      token, 
+    }
+
   }catch(err){
-    ctx.eror(500, 'server error', {code: 1})
+    ctx.throw(500, 'server error')
   }// catch end
 }

@@ -63,22 +63,46 @@
 
 16. collect_source(收藏的资源，存储资源id)
 
-# 全球公认头像的使用
+17. status(状态)
+  - 0 (未激活)
+  - 1 （激活）
+
+18. reset_password_token
+  - 重置密码的token
+
+19. reset_password_expires
+  - 重置密码token的过期时间
+
+# 登陆与注册
+## 全球公认头像的使用
 yarn add gravatar
 
-# password 加密和比对
+## password 加密和比对
 yarn add bcrypt
   - 利用bcrypt生成工具函数encryter
   - 利用bcrypt进行密码比对
 
-# JWT
+## JWT
 1. 创建自定义的401 Unauthorized 的错误处理
   - 放在/middlewares/JWTErrorHandler
-1. 生成token
+2. 生成token，封装工具函数tokener
 yarn add jsonwebtoken
+  - 用于生成或者验证token
+yarn add koa-jwt
+  - 用于检验token是否存在
+自定义一个koa-jwt错误解决方法，token不存在，返回错误信息给客户端
 
+## validator工具函数的生成
+- 主要用于表单的验证
+  - 如注册登录的验证
+  - 前端与后端的双重验证，保证数据的完整性
 
+- 安装依赖
+  - yarn add validator
 
-2. token验证
-yarn add koa-passport
-yarn add passport-jwt
+## 邮箱验证
+- 封装工具函数mailer
+
+# 修改密码与找回密码
+- 找回密码中工具函数mailer增加sendPswEmail方法
+- 

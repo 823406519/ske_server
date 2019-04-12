@@ -2,6 +2,8 @@ const Koa = require('koa')
 // 引入基本配置信息
 const {dbConnection, port, secretOrPrivateKey} = require('./config')
 
+  // kow-views
+  const views = require('koa-views')
   // koa-router 处理路由
   const router = require('./router')
   // koa-body-parser处理请求body
@@ -24,18 +26,29 @@ const app = new Koa()
 
 app.use(bodyParser()) // koa-bodyparser中间件配置
 
+// koa-views配置
+app.use(views(__dirname+'/views', { extension: 'ejs' }))
+
 
 // koa-jwt的认证监听与错误处理
   app
     .use(JWTErrorHandler)
     .use(
       jwt({secret: secretOrPrivateKey})
-        .unless(
-          {path: [/\/register/, /\/login/]}
+        .unless( // 不进行监听的路由
+          {
+            path: [
+              /\/register/, 
+              /\/login/, 
+              /\/email-activation/,
+              /\/test/, 
+              /\/forget-password/,
+              /\/reset-password-authentication/,
+            ]}
         )
     )
 
-// 在 koa-jwt中间件设置后设置
+// 路由
 app.use(router.routes()).use(router.allowedMethods()) // koa-router中间件配置
 
 app.listen(3000, () => {

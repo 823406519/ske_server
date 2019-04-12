@@ -12,18 +12,25 @@ router.use(source.routes()).use(source.allowedMethods())
 /**
  * @route GET /test
  * @description 注销账户
- * @access 接口是私密的，用于测试
+ * @access 接口是私密的，用于测试token
  */
-router.get('/test', ctx => {
-  ctx.body = {
-    message: 'hello world'
-  }
+
+const {verifyToken} = require('../utils/tokener')
+router.get('/liuyaohui/test', async ctx => {
+ ctx.body = {
+   'ctx.header.authorization': ctx.header.authorization,
+   target: verifyToken(ctx.header.authorization.split(' ')[1]),
+ }
+
 })
-.post('/test', ctx =>{
-  ctx.body={
-    message: 'test'
-  }
+
+/**
+ * @description 测试
+ */
+router.get('/test', async ctx => {
+  await ctx.render('index')
 })
+
 
 // 导出router
 module.exports = router

@@ -1,5 +1,1 @@
-if([].length){
-  console.log('hello')
-}else{
-  console.log('test')
-}
+console.log(Date.now())

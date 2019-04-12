@@ -3,7 +3,7 @@ module.exports = (ctx, next) => {
       if (401 == err.status) {
           ctx.status = 401;
           ctx.body = {
-              "error": "Not authorized"
+              "message": "Not authorized"
           };
       } else {
           throw err;
