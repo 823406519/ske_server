@@ -12,6 +12,8 @@ const {
   forgetPswControler,
   resetPswAuthControler,
   resetPswControler,
+  userInfoControler,
+  profileControler
 }
   = require('../controler/user')
 
@@ -74,6 +76,25 @@ router.get('/logout', logoutControler)
  * @access 接口是私密的
  */
 router.get('/email-activation',activeEmailControler)
+
+
+// ------------ 修改用户中心相关的信息
+
+
+/**
+ * @route GET /user-info
+ * @description 获取用户信息
+ * @access 接口是私密的
+ */
+router.get('/user-info',userInfoControler)
+
+
+/**
+ * @route POST /profile
+ * @description 修改用户中心的信息
+ * @access 接口是私密的
+ */
+router.post('/profile', profileControler)
 
 
 // 导出router

@@ -2,32 +2,7 @@
 - [根据点赞数量，返回首页的推荐知识资源](#根据点赞数量，返回首页的推荐知识资源)
 
 
-## 根据点赞数量，返回首页的推荐知识资源
-| 请求方法 | 请求url                            | 请求参数(参数类型) |
-| -------- | ---------------------------------- | ------------------ |
-| GET      | http://localhost:3000/source/index |                    |
-
-1. 描述： 返回指定number的知识资源,用于首页推荐
-2. 举例： http://localhost:3000/source/index
-  - 获取8条记录作为首页推荐
-
-3. 返回示例(根据数据库结构)
-  
-## 根据分类名称获取，返回知识资源
-| 请求方法 | 请求url                                           | 请求参数(参数类型) |
-| -------- | ------------------------------------------------- | ------------------ |
-| GET      | http://localhost:3000/source/classification/:name | name(Number)       |
-
-1. 描述： 返回指定number的知识资源,用于首页推荐
-2. 举例： 
-  - http://localhost:3000/source/classification/computer-sciences
-  - http://localhost:3000/source/classification/economic
-  - http://localhost:3000/source/classification/social-sciences
-  - http://localhost:3000/source/classification/history
-  - http://localhost:3000/source/classification/art-and-humanities
-  - 返回计算机科学相关知识资源
-3. 返回示例(根据数据库结构)
-
+# 用户API文档
 
 ## 注册
 | 请求方法 | 请求url                        | 请求参数(参数类型)                    |
@@ -60,23 +35,23 @@
 2. 返回示例(根据数据库结构)
 
 ## 忘记密码
-| 请求方法 | 请求url                             | 请求参数(参数类型) |
-| -------- | ----------------------------------- | ------------------ |
-| post     | http://localhost:3000/forget-password | email                |
+| 请求方法 | 请求url                               | 请求参数(参数类型) |
+| -------- | ------------------------------------- | ------------------ |
+| post     | http://localhost:3000/forget-password | email              |
 1. 描述  根据_id，发送重置密码的前端链接到注册邮箱
 2. 返回示例
 
 ## 重置密码的认证
-| 请求方法 | 请求url                             | 请求参数(参数类型) |
-| -------- | ----------------------------------- | ------------------ |
-| get    | http://localhost:3000/reset-password-authentication | token                |
+| 请求方法 | 请求url                                             | 请求参数(参数类型) |
+| -------- | --------------------------------------------------- | ------------------ |
+| get      | http://localhost:3000/reset-password-authentication | token              |
 1. 描述  前端链接点击了重置链接后，在渲染前发送认证请求，请求通过则渲染重置密码的页面，并发送一个jst token给用户
 2. 返回示例
 
 ## 重置密码
-| 请求方法 | 请求url                             | 请求参数(参数类型) |
-| -------- | ----------------------------------- | ------------------ |
-| post    | http://localhost:3000/reset-password |  token(非表单）, password, password2                |
+| 请求方法 | 请求url                              | 请求参数(参数类型)                  |
+| -------- | ------------------------------------ | ----------------------------------- |
+| post     | http://localhost:3000/reset-password | token(非表单）, password, password2 |
 1. 描述  根据token的_id修改密码
 2. 返回示例
 
@@ -94,12 +69,38 @@
 | 请求方法 | 请求url                                | 请求参数(参数类型) |
 | -------- | -------------------------------------- | ------------------ |
 | get      | http://localhost:3000/email-activation | captcha            |
+1. 描述： 邮箱激活验证
+2. 返回示例(根据数据库结构)
 
 
-## 私密的token测试接口
+## 修改username
 | 请求方法 | 请求url                              | 请求参数(参数类型) |
 | -------- | ------------------------------------ | ------------------ |
-| get      | http://localhost:3000/liuyaohui/test | 无                 |
+| post     | http://localhost:3000/change-username | _id username           |
+1. 描述： 修改username(因为要快速获得username是否存在这个提示)
+2. 返回示例(根据数据库结构)
 
-1. 描述： 用于私密接口的测试
-2. 返回示例
+## 修改profile（个人中心）信息
+| 请求方法 | 请求url                       | 请求参数(参数类型) |
+| -------- | ----------------------------- | ------------------ |
+| post     | http://localhost:3000/profile | _id ,很多参数           |
+- username
+- gender
+- age
+- location
+- birthday
+- mtto
+- introduction
+- private
+
+1. 描述： 邮箱激活验证
+2. 返回示例(根据数据库结构)
+
+
+
+## 获得用户所有的信息
+| 请求方法 | 请求url                         | 请求参数(参数类型) |
+| -------- | ------------------------------- | ------------------ |
+| get      | http://localhost:3000/user-info | _id                |
+1. 描述： 获得所有用户信息
+2. 返回示例(根据数据库结构)
