@@ -1,13 +1,17 @@
 const Koa = require('koa')
 // 引入基本配置信息
 const {dbConnection, port, secretOrPrivateKey} = require('./config')
-
+  
+  // koa-static
+  const static = require('koa-static')
+  // koa-cors
+  const cors = require('koa2-cors')
   // kow-views
   const views = require('koa-views')
   // koa-router 处理路由
   const router = require('./router')
-  // koa-body-parser处理请求body
-  const bodyParser = require('koa-bodyparser')
+  // koa-body 处理请求body和文件上传
+  const koaBody = require('koa-body')
   // koa-jwt处理认证
   const jwt = require('koa-jwt')
     const JWTErrorHandler = require('./middlewares/JWTErrorHandler')
@@ -22,9 +26,31 @@ const {dbConnection, port, secretOrPrivateKey} = require('./config')
         console.log('err---->', err);
       })
 
+//----------------------------------------------------------实例化koa和中间件配置
 const app = new Koa()
 
-app.use(bodyParser()) // koa-bodyparser中间件配置
+// koa-static 中间件配置
+app.use(static(__dirname+'/static'))
+// koa-bodyparser中间件配置
+app.use(koaBody({
+  multipart: true, // 支持文件上传
+  formidable: {
+    maxFieldsSize: 200*1024*1024, // 200M限制大小
+    // uploadDir: __dirname+'/files'
+    keepExtensions: true,
+  }
+})) 
+
+// koa-cors 跨域配置
+app.use(cors({
+  origin: ctx => {
+    // ctx.url 控制不能跨域访问的资源,return false
+    if(ctx.url==='/test') return false;
+
+    return '*'
+  }
+}))
+
 
 // koa-views配置
 app.use(views(__dirname+'/views', { extension: 'ejs' }))
@@ -38,12 +64,13 @@ app.use(views(__dirname+'/views', { extension: 'ejs' }))
         .unless( // 不进行监听的路由
           {
             path: [
-              /\/register/, 
-              /\/login/, 
-              /\/email-activation/,
-              /\/test/, 
-              /\/forget-password/,
-              /\/reset-password-authentication/,
+              /^\/users$/, 
+              /^\/users\/actions\/login$/, 
+              /^\/email-activation/,
+              /^\/test\/*/, 
+              /^\/public\/*/, 
+              /^\/forget-password$/,
+              /^\/reset-password-authentication/,
             ]}
         )
     )

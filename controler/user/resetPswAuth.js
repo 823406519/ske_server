@@ -2,7 +2,7 @@
 const User = require('../../model/user')
 module.exports = async ctx => {
 
-  const {token} = ctx.query
+  const {token} = ctx.params
   const user = await User.findOne(
     {
       reset_password_token: token,

@@ -15,6 +15,8 @@
       - fonts
       - css
       - js
+  - test
+    - 进行测试相关工作      
   - utils 函数工具
   - views
     - error.ejs 错误的渲染页面

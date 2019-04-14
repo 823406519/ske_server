@@ -5,7 +5,7 @@ const router = new Router()
 // 引入各接口的处理
 const {
   changeUsernameControler,
-  ChangeProfileControler
+  changeProfileControler,
 } = require('../../controler/user')
 
 
@@ -17,11 +17,11 @@ const {
 router.post('/change-username',changeUsernameControler)
 
 /**
- * @route POST /profile
+ * @route post /profile
  * @description 修改用户中心的信息
  * @access 接口是私密的
  */
-router.post('/change-profile', ChangeProfileControler)
+router.post('/change-profile', changeProfileControler)
 
 
 // 导出router

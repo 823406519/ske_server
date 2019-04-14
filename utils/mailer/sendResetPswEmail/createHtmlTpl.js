@@ -11,7 +11,7 @@ const {activeEjsTpl} = require('./config') // 引入模板配置
  * @todo 没有catch error
  */
 module.exports = createHtmlTpl = async function(path, token) {
-  const url = `${baseUrl}${path}?token=${token}`
+  const url = `${baseUrl}${path}/${token}`
   const result = await ejs.renderFile(__dirname+activeEjsTpl, {url})
   return result
 }

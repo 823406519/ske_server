@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 
-// di
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
@@ -75,7 +74,7 @@ const UserSchema = new Schema({
   },
   
   // 用户贡献资源
-  contribution:{
+  resources:{
     type: [String],
     default: []
   },

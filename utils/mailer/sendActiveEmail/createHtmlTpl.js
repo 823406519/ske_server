@@ -15,7 +15,7 @@ const {createToken} = require('../../tokener') // 生成token的方法
  */
 module.exports = createHtmlTpl = async function(path, userObj) {
   const token = createToken(userObj)
-  const url = `${baseUrl}${path}?captcha=${token}`
+  const url = `${baseUrl}${path}/${token}`
   const result = await ejs.renderFile(__dirname+activeEjsTpl, { url })
   return result
 }

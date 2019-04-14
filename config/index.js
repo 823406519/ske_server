@@ -13,7 +13,7 @@ module.exports = {
   // jsonwebtoken 用于生成token的私钥
   secretOrPrivateKey: 'liuyaohui',
   // jsonwebtoken 过期时间
-  expiresIn: '1h',
+  expiresIn: '24h',
 
   // reset password email token 的过期毫秒事件
   resetPswExpiresIn: 3600000,  // 1h

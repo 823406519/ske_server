@@ -16,26 +16,35 @@ const {
   = require('../../controler/user')
 
 /**
- * @route POST /user/register
+ * @route POST /user
  * @description 注册
  * @access 接口是公开的
  */
-router.post('/register', registerControler)
+router.post('/users', registerControler)
+
 
 /**
- * @route POST /user/login
+ * @route GET /email-activation/:captcha
+ * @description 邮箱激活验证
+ * @access 接口是私密的
+ */
+router.get('/email-activation/:captcha',activeEmailControler)
+
+
+/**
+ * @route POST user/actions/login
  * @description 登陆
  * @access 接口是公开的
  */
-router.post('/login', loginControler)
+router.post('/users/actions/login', loginControler)
 
 
 /**
- * @route POST /change-password
+ * @route PUT /users/:_id/password/actions/modify
  * @description 修改密码
  * @access 接口是私密的
  */
-router.post('/change-password', changePswControler)
+router.post('/users/:_id/password/actions/modify', changePswControler)
 
 
 /**
@@ -47,33 +56,28 @@ router.post('/forget-password', forgetPswControler)
 
 
 /**
- * @route POST /reset-password-authentication
+ * @route GET /reset-password-authentication/:token
  * @description 重置密码的认证
  * @access 接口是公开的
  */
-router.get('/reset-password-authentication', resetPswAuthControler)
+router.get('/reset-password-authentication/:token', resetPswAuthControler)
 
 /**
  * @route POST /reset-password
  * @description 重置密码
  * @access 接口是公开的
  */
-router.get('/reset-password', resetPswControler)
+router.post('/reset-password', resetPswControler)
 
 
 /**
- * @route GET /logout
+ * @route GET /user/_id/actions/logout
  * @description 注销账户
  * @access 接口是私密的
  */
-router.get('/logout', logoutControler)
+router.get('/user/_id/actions/logout', logoutControler)
 
-/**
- * @route GET /email-activation
- * @description 邮箱激活验证
- * @access 接口是私密的
- */
-router.get('/email-activation',activeEmailControler)
+
 
 
 // 导出router

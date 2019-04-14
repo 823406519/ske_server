@@ -38,7 +38,7 @@ module.exports = async ctx =>{
     })
     
     // 发送重置链接到指定邮箱
-    await sendResetPswEmail(email, '/reset-password', token)
+    await sendResetPswEmail(email, '/reset-password-authentication', token)
     ctx.body = {
       message: `已发送重置密码链接到 ${email} 邮箱中`
     }

@@ -52,7 +52,6 @@ module.exports = async ctx => {
     // 发送邮箱激活验证码
     await sendActiveEmail(user.email, '/email-activation', {_id: user._id})
 
-    ctx.status =200
     ctx.body = {
       message: `注册成功,请到邮箱 ${user.email} 进行账户激活`
     }

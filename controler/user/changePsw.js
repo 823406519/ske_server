@@ -4,8 +4,8 @@ const  {encrypt} = require('../../utils/encrypter')
 const {validateChangePsw} = require('../../utils/validator')
 
 module.exports = async ctx => {
-  
-  let {_id, password, password2, password3} = ctx.request.body
+  const {_id} = await ctx.params
+  let {password, password2, password3} = ctx.request.body
   const user = await User.findOne({_id})
  
   if(!user){

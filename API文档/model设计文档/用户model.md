@@ -61,7 +61,7 @@
 * collection
   - type `[String]`(收藏的资源id)
 
-# 用户的贡献
-* contribution(贡献)
+# (用户上传的资源
+* resoures(用户上传的资源)
   - type `[String]`
 
