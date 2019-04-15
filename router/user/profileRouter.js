@@ -10,18 +10,18 @@ const {
 
 
 /**
- * @route POST /change-username
- * @description 获取用户信息
+ * @route PUT /users/username
+ * @description 修改用户名
  * @access 接口是私密的
  */
-router.post('/change-username',changeUsernameControler)
+router.put('/users/username',changeUsernameControler)
 
 /**
- * @route post /profile
+ * @route PUT /users/profile
  * @description 修改用户中心的信息
  * @access 接口是私密的
  */
-router.post('/change-profile', changeProfileControler)
+router.put('/users/profile', changeProfileControler)
 
 
 // 导出router

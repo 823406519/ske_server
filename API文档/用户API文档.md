@@ -37,9 +37,8 @@
 ## 修改密码
 | 请求方法 | 请求url                               | 请求参数(参数类型)              |
 | -------- | ------------------------------------- | ------------------------------- |
-| put     | http://localhost:3000/users/:_id/password/actions/modify| password, password2, password3} |
-
-1. 描述： 修改密码
+| put     | http://localhost:3000/users/password| password, password2, password3} |
+1. 描述： 修改密码,根据token获得_id
 2. 返回示例(根据数据库结构)
 
 ## 忘记密码
@@ -78,14 +77,14 @@
 ## 修改username
 | 请求方法 | 请求url                              | 请求参数(参数类型) |
 | -------- | ------------------------------------ | ------------------ |
-| post     | http://localhost:3000/change-username | _id username           |
+| put     | http://localhost:3000/users/username | _id username           |
 1. 描述： 修改username(因为要快速获得username是否存在这个提示)
 2. 返回示例(根据数据库结构)
 
 ## 修改profile（个人中心）信息
 | 请求方法 | 请求url                       | 请求参数(参数类型) |
 | -------- | ----------------------------- | ------------------ |
-| post     | http://localhost:3000/profile | _id ,很多参数           |
+| post     | http://localhost:3000/users/profile | _id ,很多参数           |
 - username
 - gender
 - age

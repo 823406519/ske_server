@@ -2,14 +2,18 @@ const User = require('../../model/user')
 const bcrypt = require('bcrypt');
 const  {encrypt} = require('../../utils/encrypter')
 const {validateChangePsw} = require('../../utils/validator')
+const {verifyToken} = require('../../utils/tokener')
 
 module.exports = async ctx => {
-  const {_id} = await ctx.params
+  const {_id} = verifyToken(ctx.header.authorization.split(' ')[1]) // token中获取id
   let {password, password2, password3} = ctx.request.body
   const user = await User.findOne({_id})
  
   if(!user){
-    ctx.throw(500);
+    ctx.status = 400  // bad request
+    ctx.body ={
+      message: '非法用户请求修改密码'
+    }
     return
   }
 

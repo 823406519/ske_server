@@ -1,8 +1,10 @@
 const User = require('../../model/user')
+const {verifyToken} = require('../../utils/tokener')
 
 module.exports = async ctx => {
+  const {_id} = verifyToken(ctx.header.authorization.split(' ')[1]) // token中获取id
+
   const {
-    _id,
     gender,
     age,
     location,

@@ -9,11 +9,11 @@ const {
 } = require('../../controler/resource')
 
 /**
- * @route POST /user/:id/resources
+ * @route POST /users/resources
  * @description 创建资源
  * @access 接口是私密的
  */
-router.post('/user/:id/resources', createResourceControler)
+router.post('/users/resources', createResourceControler)
 
 
 

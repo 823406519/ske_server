@@ -21,4 +21,7 @@ module.exports = {
   // baseurl
   baseUrl: `http://localhost:${port}`,
 
+  // 设置点赞和收藏的目标数，用于筛选推荐的资源
+  like_counts:0,
+  collection_counts:0,
 }

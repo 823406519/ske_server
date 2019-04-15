@@ -20,20 +20,20 @@ const ResourceSchema = new Schema({
   content: {
     type: String
   },
-  like_count: {
+  like_counts: {
     type: Number,
     default: 0
   },
-  read_count:{
+  read_counts:{
     type: Number,
     default: 0
   },
-  collection_count:{
+  collection_counts:{
     type: Number,
     default: 0
   },
   comments: {
-    type: [{commenter_id: String, comment_content: String}]
+    type: [{commenter_id: String, comment: String}]
   }
 })
 

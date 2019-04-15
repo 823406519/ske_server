@@ -1,6 +1,11 @@
 
-const updateResourceControler= require('./updateResource')
-
+const editResourceControler= require('./editResource')
+const increaseCollectionCountControler=require('./increaseCollectionCount')
+const increaseLikeCountControler= require('./increaseLikeCount')
+const createCommentControler= require('./createComment')
 module.exports = {
-  updateResourceControler
+  editResourceControler,
+  increaseCollectionCountControler,
+  increaseLikeCountControler,
+  createCommentControler
 }

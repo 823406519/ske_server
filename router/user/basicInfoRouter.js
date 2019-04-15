@@ -40,11 +40,11 @@ router.post('/users/actions/login', loginControler)
 
 
 /**
- * @route PUT /users/:_id/password/actions/modify
+ * @route PUT /users/password
  * @description 修改密码
  * @access 接口是私密的
  */
-router.post('/users/:_id/password/actions/modify', changePswControler)
+router.put('/users/password', changePswControler)
 
 
 /**

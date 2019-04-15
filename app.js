@@ -71,6 +71,15 @@ app.use(views(__dirname+'/views', { extension: 'ejs' }))
               /^\/public\/*/, 
               /^\/forget-password$/,
               /^\/reset-password-authentication/,
+
+              // 资源获取是公开的
+              /^\/resources/,
+              /^\/recommend-resources/,
+              /^\/classification-resources/,
+
+              // 资源搜索是公开的
+              /^\/resources/,
+              /^\/search/,
             ]}
         )
     )
