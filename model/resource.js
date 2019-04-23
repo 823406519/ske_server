@@ -3,11 +3,14 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const ResourceSchema = new Schema({
-  classification:{
+  classification: {
     type: Number,
     default: 0
   },
   author_id: {
+    type: String
+  },
+  author_name: {
     type: String
   },
   last_update_time: {
@@ -24,16 +27,24 @@ const ResourceSchema = new Schema({
     type: Number,
     default: 0
   },
-  read_counts:{
+  read_counts: {
     type: Number,
     default: 0
   },
-  collection_counts:{
+  collection_counts: {
     type: Number,
     default: 0
   },
   comments: {
-    type: [{commenter_id: String, comment: String}]
+    type: [
+      {
+        commenter_id: String,
+        commenter_name: String,
+        commenter_avatar: String,
+        comment_time: Date,
+        comment: String
+      }
+    ]
   }
 })
 

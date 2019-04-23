@@ -71,6 +71,7 @@ app.use(JWTErrorHandler).use(
         /^\/test\/*/,
         /^\/public\/*/,
         /^\/forget-password$/,
+        /^\/reset-password/,
         /^\/reset-password-authentication/,
 
         // 资源获取是公开的
@@ -80,7 +81,10 @@ app.use(JWTErrorHandler).use(
 
         // 资源搜索是公开的
         /^\/resources/,
-        /^\/search/
+        /^\/search/,
+
+        // 获取用户信息是公开的
+        /^\/users\/[a-z0-9A-Z]*$/
       ]
     }
   )

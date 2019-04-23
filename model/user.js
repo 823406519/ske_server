@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const UserSchema = new Schema({
   /**
@@ -11,13 +11,13 @@ const UserSchema = new Schema({
    */
 
   // 基本信息
-  username : {
+  username: {
     type: String,
-    require: true,
+    require: true
   },
-  email:{
+  email: {
     type: String,
-    required: true,
+    required: true
   },
   password: {
     type: String,
@@ -27,11 +27,11 @@ const UserSchema = new Schema({
     type: Number,
     default: 0
   },
-  reset_password_token:{
-    type: String,
+  reset_password_token: {
+    type: String
   },
-  reset_password_expires:{
-    type: Date,
+  reset_password_expires: {
+    type: Date
   },
 
   // 用户中心信息
@@ -40,7 +40,7 @@ const UserSchema = new Schema({
   },
   gender: {
     type: Number,
-    default: 0  // 0 为man
+    default: 0 // 0 为man
   },
   age: {
     type: String,
@@ -50,15 +50,15 @@ const UserSchema = new Schema({
     type: [String],
     default: []
   },
-  location:{
+  location: {
     type: String,
     default: ''
   },
-  mtto:{
+  mtto: {
     type: String,
-    default: '',
+    default: ''
   },
-  introduction:{
+  introduction: {
     type: String,
     default: ''
   },
@@ -72,15 +72,18 @@ const UserSchema = new Schema({
     type: [String],
     default: []
   },
-  
+
   // 用户贡献资源
-  resources:{
+  resources: {
     type: [String],
     default: []
   },
 
-
+  // 创建时间
+  create_time: {
+    type: Date,
+    default: Date.now
+  }
 })
-
 
 module.exports = mongoose.model('User', UserSchema)

@@ -1,7 +1,9 @@
 const ejs = require('ejs')
-const {baseUrl} = require('../../../config')
 
-const {activeEjsTpl} = require('./config') // 引入模板配置
+// 需要利用客户端的页面
+// const {baseUrl} = require('../../../config')
+
+const { activeEjsTpl } = require('./config') // 引入模板配置
 
 /**
  * 返回html邮件模板字符串
@@ -11,7 +13,7 @@ const {activeEjsTpl} = require('./config') // 引入模板配置
  * @todo 没有catch error
  */
 module.exports = createHtmlTpl = async function(path, token) {
-  const url = `${baseUrl}${path}/${token}`
-  const result = await ejs.renderFile(__dirname+activeEjsTpl, {url})
+  const url = `http://localhost:8080/#${path}/${token}`
+  const result = await ejs.renderFile(__dirname + activeEjsTpl, { url })
   return result
 }

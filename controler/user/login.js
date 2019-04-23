@@ -7,7 +7,6 @@ module.exports = async ctx => {
   // 表单验证
   const error = validateLogin(ctx.request.body)
   if (error) {
-    // ctx.status = 400
     ctx.body = {
       code: 0,
       message: error
@@ -20,8 +19,6 @@ module.exports = async ctx => {
   try {
     const users = await User.find({ email })
     if (!users.length) {
-      // ctx.status = 400
-
       ctx.body = {
         code: 0,
         message: '登陆失败，邮箱不存在'
@@ -30,7 +27,6 @@ module.exports = async ctx => {
     }
 
     if (!(await bcrypt.compare(password, users[0].password))) {
-      // ctx.status = 400
       ctx.body = {
         code: 0,
         message: '登陆失败，密码错误'
@@ -39,7 +35,6 @@ module.exports = async ctx => {
     }
 
     if (users[0].status === 0) {
-      // ctx.status = 400
       ctx.body = {
         code: 0,
         message: '登陆失败，账号尚未激活，请到邮箱进行激活'
@@ -54,6 +49,7 @@ module.exports = async ctx => {
       code: 1,
       message: '登陆成功',
       user: {
+        _id: user._id,
         status: user.status,
         gender: user.gender,
         age: user.age,

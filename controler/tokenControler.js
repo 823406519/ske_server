@@ -16,6 +16,20 @@ module.exports = async ctx => {
   ctx.body = {
     code: 1,
     message: 'token 验证通过',
-    user
+    user: {
+      _id: user._id,
+      status: user.status,
+      gender: user.gender,
+      age: user.age,
+      birthday: user.birthday,
+      location: user.location,
+      mtto: user.mtto,
+      introduction: user.introduction,
+      collections: user.collections,
+      resources: user.resources,
+      username: user.username,
+      email: user.email,
+      avatar: user.avatar
+    }
   }
 }

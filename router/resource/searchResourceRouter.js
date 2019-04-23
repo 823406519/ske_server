@@ -15,7 +15,6 @@ const {
  */
 router.get('/resources/:_id', getResourceControler)
 
-
 /**
  * @route Get /recommend-resources/:sort
  * @description 返回热门的推荐资源
@@ -23,20 +22,21 @@ router.get('/resources/:_id', getResourceControler)
  */
 router.get('/recommend-resources/:sort', getRecommendResourceControler)
 
-
 /**
  * @route Get /classification-resources/:classification/:sort
  * @description 返回分类的资源
  * @access 接口是私密的
  */
-router.get('/classification-resources/:classification/:sort', getClassificationResourceControler)
-
+router.get(
+  '/classification-resources/:classification/:sort',
+  getClassificationResourceControler
+)
 
 /**
- * @route Get /search/
+ * @route Get /search
  * @description 根据title返回搜索的资源
  * @access 接口是私密的
  */
-router.get('/search/', getSearchResourceControler)
+router.get('/search', getSearchResourceControler)
 
 module.exports = router

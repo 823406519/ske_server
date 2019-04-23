@@ -1,7 +1,6 @@
 const loginControler = require('./login')
 const registerControler = require('./register')
-const logoutControler = require('./logout')
-const activeEmailControler =require('./activeEmail')
+const activeEmailControler = require('./activeEmail')
 const changePswControler = require('./changePsw')
 const forgetPswControler = require('./forgetPsw')
 const resetPswAuthControler = require('./resetPswAuth')
@@ -24,7 +23,6 @@ module.exports = {
   // ------ 基本信息
   loginControler,
   registerControler,
-  logoutControler,
   activeEmailControler,
   changePswControler,
   forgetPswControler,
@@ -43,5 +41,5 @@ module.exports = {
   getResourcesControler,
 
   // --------- 获取所有用户信息
-  getUserInfoControler,
+  getUserInfoControler
 }
