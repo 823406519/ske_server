@@ -56,7 +56,7 @@ router.post('/forget-password', forgetPswControler)
 router.get('/reset-password-authentication/:token', resetPswAuthControler)
 
 /**
- * @route POST /reset-password
+ * @route /reset-password/:token
  * @description 重置密码
  * @access 接口是公开的
  */

@@ -11,7 +11,7 @@ const {
 /**
  * @route Get /resources/:_id
  * @description 返回资源
- * @access 接口是私密的
+ * @access 接口是公开的
  */
 router.get('/resources/:_id', getResourceControler)
 

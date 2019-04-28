@@ -16,14 +16,15 @@ const {
  */
 router.put('/resources/:r_id', editResourceControler)
 
-
 /**
- * @route PUT /resources/:_id/like-counts
+ * @route PUT /resources/:_id/collection-counts
  * @description 增加资源收藏
  * @access 接口是私密的
  */
-router.put('/resources/:_id/collection-counts', increaseCollectionCountControler)
-
+router.put(
+  '/resources/:_id/collection-counts',
+  increaseCollectionCountControler
+)
 
 /**
  * @route PUT /resources/:_id/like-counts
